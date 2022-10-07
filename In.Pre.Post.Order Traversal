@@ -1,0 +1,45 @@
+a func that takes in a BST and an empty array,traverse the BST,add its nodes' values to the input array
+the three func should traverse the BST using the in-order,pre-order and post-order techniques
+
+        10
+       /  \
+      5    15
+     / \     \
+    2   5     22
+   /
+  1
+In-order:
+[1,2,5,5,10,15,22]
+traverse as if we were doing it sorted
+always look at the leftmost leaf
+so we would want to call the inorder func(left) until it gets to a None value
+then we would append the current value(1),then we check the right value of 1 as it would be bigger than 1 but less than 2
+but since its a none we go back up the tree to 2, then we append the current value(2) and then check the right value of 2
+PSEUDO CODE:
+inordertraverse(left)
+array.append(currentvalue)
+inordertraverse(right)
+
+pre-order:
+[10,5,2,1,5,15,22]
+would append each time you traverse then check the left then right
+so it would be append(10) then traverse left, the append(5) then left,append(2) then left, then append 1 then left.
+now that we hit a none value we then check the right subtree so we go up and check if (2) has a right. still None then
+go up again and check if (5) has a right, it does so we append the right and so on
+PSEUDO CODE:
+array.append(currentvalue)
+inordertraverse(left)
+inodertraverse(right
+
+
+post-order:
+[1,2,5,5,22,15,10]
+
+
+PSEUDO CODE:
+inordertraverse(left)
+inordertraverse(right)
+array.append(currentvalue)
+
+Time:O(n)- we have to traverse everysingle node
+space:O(n)/O(d) where d is the depth of the array-

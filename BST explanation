@@ -1,0 +1,66 @@
+average case:
+Time=O(log(n)) because we dont check half the tree then,eg
+if we are looking for 14 we dont check the left sub tree of 10,the right subtree of 15 and the left subtree of 13.
+Space=O(log(n))
+call stack:( say we are looking for 14)
+|_14_|
+|_13_|
+|_15_|
+|_10_|
+once its found then we can start erasing the call stack
+worst case:
+Time=O(n), the tree may be balanced and the side we dont check may not have as many nodes hence time increase
+Space=O(n)
+
+
+        10
+       /  \
+      5    15
+     / \   / \
+    2   5 13  22
+   /      / \
+  1     (12) 14
+
+1. this is a BST because it has 1/2 max nodes per parent node
+2. all the nodes on the left branch of the root node(10) is less than the root node and
+all the nodes on the right branch of the root node is larger than the root node
+3. the left and right node that you are looking at must also satisfy this property
+eg. 15, the node 13 is placed to the left of 15 as it is larger than the root( hence it will be on the right branch)
+and it less than 15 so it will be on the left. the 1 isnt placed on the right side as it is not larger than 10
+the 14 cannot be placed under the 22 as all values to the right of the parent node (15 ) must be more than the parent node
+
+INSERTION:
+1. lets say we want to insert the number 12,since 12>10, we can elminate the left side of the BST
+2. since 15> 12 we now eliminate the right sub tree and so on until we get to an empty none value and we insert 12 there
+
+
+SEARCHING:
+1.lets say we are searching for 12, we compare the 10 to 12, since 12>10 we know that IF 12 is in the BST it will be contained
+in the right side of the BST and so on( it is very similar to the logic of insertion).
+2. if the value we are searching for isnt in the tree eg.11 we would do the same process but when we get to 12 and there
+is no sub left tree we would return false
+
+DELETION:
+1. say we wanted to delete 1, same process as the insertion until we get to the value we want to delete.
+this is the easy case as the 1 is a leaf node( has no children nodes)
+2. say we wanted to delete the 2, we would have to delete the 2 and move the 1 to replace it so the tree would be
+    5
+   / \
+  1   5
+3. the hard cases is when you want to delete a node that has 2 child nodes.
+if we wanted to remove the number 10, the technique to to find the most optimal replacement is to find the
+smallest value in the right subtree of the node so in this case it would be 12( we grab the leftmost value of the right sub tree)
+This works because all the values in the right sub tree as always greater than the any of the values in the left sub tree
+we know that the leftmost value of the right sub tree is smaller than the all the values in the right subtree
+eg. lets say we have this tree
+        10
+       /  \
+      5    15
+     / \   / \
+    2   5 13   22
+   /      /\   /
+  1     (12)14 20
+ if we wanted to remove 15, the most optimal replacement for 15 would be 20, the smallest(leftmost ) value of the right
+ subtree from 15.
+ we would replace the value of 15 with 12 then delete the number 20.
+

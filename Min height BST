@@ -1,0 +1,37 @@
+given a sorted array of distinct int,construct a BST of min height and return the root node value
+the height of a BST is the length of the longest node
+it is important that the int are distinct because if we had mutliple similar values it would be harder to determine the
+root node(line 19)
+array=[1,2,5,7,10,13,14,15,22]
+
+        10
+       /  \
+      2    14
+     / \   / \
+    1  5  13  15
+        \       \
+         7       22
+
+logic:
+for a BST to have a min height it should have roughly equal number of nodes on the left and right subtree
+eg.for this array the most optimal root node would be 10, which is also the middle position of the array
+then to pick the node to its left we would find the middle value of elements to the root nodes left
+eg. since we picked 10 to be our root node we would look at [1,2,5,7] and find the middle and make that the node to the left
+of 10 and so on.
+we would have a recursive function that would find the middle and insert the node
+
+
+distinct:
+eg array=[1,2,5,10,10(2),13,14,15,22]
+if we chose 10(2) to be the root node the left subtree would only have 3 nodes(1,2,5) as the duplivate value would be to
+the right hence it is important that they are distinct
+
+
+Time:O(nlog(n))
+because we are inserting n nodes into the binary tree and to insert a node it take log(n) time , so we are doing n opertaion
+of n of log(n) time
+or
+Time:
+we would manually insert the value instead of calling the .insert function and having a greater time complexity
+
+space: O(n)

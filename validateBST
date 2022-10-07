@@ -1,0 +1,40 @@
+ write a function that takes in a potentially invalid BST and returns a
+ boolean representing weather the BST is valid.it must satisfy the property
+ :its value is strictly greater than the value of everynode to its left and its
+ value is less than or equal to the values of every noe to its right. its children are
+ either valid BST nodes themselves or None/null values.
+
+
+        10
+       /  \
+      5    15
+    / \    / \
+   2 (2)5 13   22
+   /       \
+  1        14
+
+Logic to solving :
+-we will take the root node(10) then validate or invalidate its children(5 and 15)
+then we take the 5 and 15 and validate its children, for 5 it would be 2 and 5 , for 15 it would be 13 and 22
+and so on
+- max and min of a BST
+lets take the second (2)5,its minimum value is 5 as it has to be larger than the parent node, and its
+maximum value is 9 as it has to be smaller than the root node(this only has 2 conditions as it only has two "generations")
+so for that node it would be ,5<=node.value<10
+
+eg. another eg , lets take 13, 13 max is 14 as it has to be less than 15 and its minimum is 10 as it has to be
+greater than or equal to the root node
+so for this node its, 10<=node.value<15
+
+so what we could do is make a function that updates the max and min value of the nodes
+if we started at the root node, and we traversed left to 5 we then could update the max value to be the root node and
+the minimum value can stay at negative infinity( so we are at (1)5 the max and min would be max 9 and min -infinity )
+similarly if we traverse right we would update our minimum value, so eg we are at 15 now, the minimum value would be 10
+and the max would be infinity
+
+in summary if we traverse left we update the max, if we traverse right we update the minimum
+
+Time:O(n) -we are traversing every node once, and checking each node would be a constant time
+space: O(D(depth of the tree, length of the longest branch, this is the biggest amount of space we would use on the call stack))- we are using space on the call stack , until we validate the left and right subtree, everynode above will
+be on the call stack.eg lets say we are checking 14, until we validate that path, the call stack will hold valBST(10),valBST(15),valBST(13),valBST(14)
+
